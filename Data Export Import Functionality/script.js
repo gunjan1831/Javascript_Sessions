@@ -30,30 +30,36 @@ CSV.addEventListener('change',(event)=> {
     reader.readAsText(file);
 });
 
-button.addEventListener('click', () => { 
-    const rows = document.querySelectorAll('#table tr'); 
-    let csvContent = ''; 
-  
-    for (let i = 0; i < rows.length; i++) { 
-        let row = rows[i]; 
-        let cols = row.querySelectorAll('td'); 
-        let rowContent = ''; 
-  
-        for (let j = 0; j < cols.length; j++) { 
-            let col = cols[j]; 
-            rowContent += col.textContent + ',';} 
-  
-        csvContent += rowContent.slice(0, -1) + '\n';} 
-  
-    const blob = new Blob([csvContent],  
-        { type: 'text/csv' }); 
-    const url = window.URL.createObjectURL(blob); 
-  
-    const a = document.createElement('a'); 
-    a.href = url; 
-    a.download = 'exported_data.csv'; 
-    document.body.appendChild(a); 
-    a.click(); 
-    document.body.removeChild(a); 
-    window.URL.revokeObjectURL(url); 
+button.addEventListener('click',() => {
+    const rows = document.querySelectorAll('#table tr');
+    let csvContent = '';
+    for(let i = 0;i<rows.length ;i++)
+        {
+            let row = rows[i];
+            let cols = row.querySelectorAll('td');
+            let rowContent = '';
+
+            for(let j=0;j<cols.length;j++){
+                let col = cols[j];
+                rowContent += col.textContent + ',';
+
+            }
+
+            csvContent += rowContent.slice(0,-1) + '\n';
+
+
+        }
+
+
+        const blob = new Blob([csvContent],{type : 'type/csv'});
+        const  url = window.URL.createObjectURL(blob);
+        print(url);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "exported_data.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
 });
