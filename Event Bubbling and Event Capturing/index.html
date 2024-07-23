@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Capturing and Event Bubbling In Javascript</title>
+   
+    <style>
+        div
+        {
+           color: rgba(12, 2, 2, 0.885);
+           display:flex;
+           justify-content:center;
+           align-items: center;
+           flex-direction: column;
+        }
+
+        h1 {
+            color: rgb(11, 11, 205);
+        }
+
+        #grandparent 
+        {
+         background-color: rgb(131, 226, 131);
+         width: 300px;
+         height: 300px;
+        }
+
+        #parent
+        {
+            background-color: yellow;
+            width: 200px;
+            height: 200px;
+        }
+
+        #child
+        {
+            background-color: rgb(207, 120, 166);
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Welcome</h1>
+        <div id="grandparent">
+            Grandparent
+            <div id="parent">
+                Parent
+                <div id = "child">
+                  Child: 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const grandParent = document.getElementById("grandparent");
+        const parents = document.getElementById("parent");
+        const child = document.getElementById("child");
+
+        grandParent.addEventListener("click",(e)=>{console.log("Grandparent")},{capture: true});
+        parents.addEventListener("click",(e)=>{console.log("Parent")},{capture: true});
+       child.addEventListener("click",(e)=>{console.log("Child")},{capture: true});
+    </script>
+</body>
+</html>
